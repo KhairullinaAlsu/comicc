@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cssForIndex/style.css">
+    <title>Alsu Khairullina</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Raleway:wght@200;800&display=swap" rel="stylesheet">
+<body>
+    <div class="main">
+        <div class="introduction">
+            <img src="images/Me.JPG" alt="It's me" class="Photo">'
+            <div class="main__text">
+                <h1 class="heading">Hello!</h1>
+                <p class="usual_text">I am Alsu Khairullina, a student of Innopolis University. My creative personality inside me requires that I realize my ideas and desires in the learning process. That's why I'm on a Frontend development course. Below you can choose any section you are interested in and learn more about me!</p> 
+            </div>
+        </div>
+        <div class="navigation">
+            <ul>
+                <li><a href="/about.html" target="_blank">About me</a></li>
+                <li><a href="/sources.html" target="_blank">Sources of inspiration</a></li>
+                <li><a href="/projects.html" target="_blank">My projects</a></li>
+                <li><a href="#contacts">Contacts</a></li>    
+            </ul>
+        </div>
+    </div>
+    <div class="contacts" id="contacts">
+        <div class="container">
+            <div class="heading__contacts"><h1>My contacts</h1></div>
+            <div class="usual__text__contacts">If you want to contact me, you can write to social networks</div>
+            <p class="photos">
+                <a href="https://t.me/alsukhairullina" id="tg_link" target="_blank"><img src="images/tg1.png" alt="telegram" class="soc"></a>
+                <a href="https://github.com/KhairullinaAlsu" id="gh-link" target="_blank"><img src="images/github.png" alt="github" class="soc"></a>
+                <a href="mailto:a.khairullina@innopolis.university" id="email"><img src="images/outlook.png" alt="outlook" class="soc"></a>
+            </p>
+        </div>
+    </div>
+    <div class="comic__container">
+        <img class="comic__image" alt="XKCD Comic Image">
+        <h2 class="comic__title"></h2>
+        <p class="publish__date"></p>
+    </div>
+    <script>
+    const email = 'a.khairullina@innopolis.university';
+    const apiUrl = 'https://fwd.innopolis.university/api';
+    const fetchComicIdentifier = async () => {
+        const params = new URLSearchParams({ email });
+        const response = await fetch(`${apiUrl}/hw2?${params}`);
+        const data = await response.json();
+        return data.comic_id;
+    };
+    const fetchComicData = async (comicId) => {
+        const response = await fetch(`${apiUrl}/comic?id=${comicId}`);
+        const data = await response.json();
+        return data;
+    };
+    const displayComic = (comic) => {
+        const { img, title, alt, year, month, day } = comic;
+        const uploadDate = new Date(year, month - 1, day);
+        const comicImage = document.querySelector('.comic__image');
+        comicImage.src = img;
+        comicImage.alt = alt;
+        const comicTitle = document.querySelector('.comic__title');
+        comicTitle.textContent = title;
+        const publishDate = document.querySelector('.publish__date');
+        publishDate.textContent = `Published on ${uploadDate.toLocaleDateString()}`;
+    };
+    fetchComicIdentifier()
+        .then(fetchComicData)
+        .then(displayComic)
+        .catch((error) => console.error(error));
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(#fac3e8, #f7dfef, #f7ebf3, #cfb2c5) no-repeat;
+    background-attachment: scroll;
+}
+
+.main__about {
+    background-color: white;
+    margin: -30px 60px 60px 60px;
+    border-radius: 30px;
+    background-size: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-attachment: scroll;
+}
+
+.photoAbout {
+    float: left;
+    margin: 80px 80px 0px 80px;
+    width: 600px;
+    height: 400px;
+}
+
+.main__text {
+    margin: 80px;
+    padding-bottom: 50px;
+}
+
+.heading {
+    padding-top: 8%;
+    font-size: 40px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.usual_text {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
